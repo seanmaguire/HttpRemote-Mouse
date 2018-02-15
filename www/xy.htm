@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Mouse</title>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+
+var flow = 0,
+    flowControl = 10;
+
+var $ = document.querySelector.bind(document),
+  $$ = document.querySelectorAll.bind(document),
+  getPointerEvent = function(event) {
+    return event.targetTouches ? event.targetTouches[0] : event;
+  },
+  setListener = function (elm,events,callback) {
+    var eventsArray = events.split(' '),
+      i = eventsArray.length;
+    while(i--) {
+      elm.addEventListener(eventsArray[i], callback, false);
+    }
+  };
+
+var touchArea = $('#touchArea'),
+    touchStarted = false,
+    currX = 0,
+    currY = 0,
+    cachedX = 0,
+    cachedY = 0;
+
+setListener(touchArea, 'touchstart mousedown', function(e) {
+  e.preventDefault();
+  var pointer = getPointerEvent(e);
+  cachedX = currX = pointer.pageX;
+  cachedY = currY = pointer.pageY;
+  touchStarted = true;
+  touchArea.innerHTML = 'Touchstarted';
+
+  // detecting if after 200ms the finger is still in the same position
+  setTimeout(function() {
+    if ((cachedX === currX) && !touchStarted && (cachedY === currY)) {
+      touchArea.innerHTML = 'Tap';
+      postData("tap");
+    }
+  }, 200);
+});
+
+setListener(touchArea, 'touchend mouseup touchcancel', function(e) {
+  e.preventDefault();
+  touchStarted = false;
+  touchArea.innerHTML = 'Touched';
+});
+
+setListener(touchArea, 'touchmove mousemove', function(e) {
+  e.preventDefault();
+  var pointer = getPointerEvent(e);
+  currX = pointer.pageX;
+  currY = pointer.pageY;
+  if(touchStarted) {
+    touchArea.innerHTML = 'Swiping ' + currX + ' ' + currY;
+    if (flow % flowControl == 0) postData("swipe " + currX + " " + currY);
+    flow++;
+  }
+});
+
+function postData(data) {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    xmlhttp=new XMLHttpRequest();
+  } else {
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("POST","ajax123test.htm",true);
+  xmlhttp.send(data);
+}
+
+}, false);  // end dom load
+</script>
+<style>
+#touchArea {width:950px; height:1000px; background:#333; font-size:20px; color:#fff;}
+</style>
+</head>
+<body>
+  <br />
+  <div id="touchArea"></div>
+  <br />
+</body>
+</html>

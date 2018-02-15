@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+  <p>Mouse position: <span id="posDisplay"></span></p>
+  <p>Counter: <span id="counterDisplay"></span></p>
+<script>
+window.onload = function() {
+  
+  var mousePos,
+      posDisplay = document.getElementById("posDisplay"),
+      counterDisplay = document.getElementById("counterDisplay"),
+      counter = 0;
+
+  window.onmousemove = handleMouseMove;
+  setInterval(getMousePosition, 100); // setInterval repeats every X ms
+
+  function handleMouseMove(event) {
+      event = event || window.event; // IE-ism
+      mousePos = {
+          x: event.clientX,
+          y: event.clientY
+      };
+  }
+
+  function getMousePosition() {
+      var pos = mousePos;
+      if (!pos) {
+          // We haven't seen any movement yet
+          pos = {x: "?", y: "?"};
+      }
+      posDisplay.innerHTML = "(" + pos.x + "," + pos.y + ")";
+      counterDisplay.innerHTML = ++counter;
+  }
+  
+  function display(msg) {
+    var p = document.createElement('p');
+    p.innerHTML = msg;
+    document.body.appendChild(p);
+  }
+};
+</script>
+</body>
+</html>

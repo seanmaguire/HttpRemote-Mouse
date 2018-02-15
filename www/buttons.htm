@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>HttpRemote</title>
+
+<script>
+function toggle_button(n) {
+  var button = document.getElementById("button"+n);
+  if (button.innerHTML.indexOf("green") > 0) {
+    button.innerHTML = "<img src=\"img/red.png\" onclick=\"toggle_button('"+n+"')\">";
+	postData("button "+n+" 0");
+  } else {
+    button.innerHTML = "<img src=\"img/green.png\" onclick=\"toggle_button('"+n+"')\">";;
+	postData("button "+n+" 1");
+  }
+}
+
+function postData(data) {
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else {
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			//document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("POST","ajax123test.htm",true);
+	xmlhttp.send(data);
+}
+
+</script>
+</head>
+<body style="background-color:#000;">
+
+1
+<br><div id="button1">
+<img src="img/green.png" onclick="toggle_button('1')">
+</div><br>
+
+2
+<br><div id="button2">
+<img src="img/red.png" onclick="toggle_button('2')">
+</div><br>
+
+</body>
+</html>

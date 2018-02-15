@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Pedals</title>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script>
+//jQuery(document).ready(function($) {
+
+function toggle_button(n) {
+  if ($('#button'+n).hasClass('red')) {
+    $('#button'+n).removeClass('red').addClass('green');
+    postData("button "+n+" 1");
+  } else {
+    $('#button'+n).removeClass('green').addClass('red');
+    postData("button "+n+" 0");
+  }
+}
+
+function postData(data) {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    xmlhttp=new XMLHttpRequest();
+  } else {
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("POST","ajax123test.htm",true);
+  xmlhttp.send(data);
+}
+
+//}); 
+</script>
+<style>
+.red {background-color:#f00;}
+.green {background-color:#0f0;}
+.button {font-size:170px;color:#fff;width:700px;height:250px;overflow:hidden;}
+</style>
+</head>
+
+<body style="background-color:#000;">
+
+<div id="content">
+<br />
+<div id="button1" class="button green" onclick="toggle_button('1')">1</div>
+<br />
+<div id="button2" class="button green" onclick="toggle_button('2')">2</div>
+<br />
+<div id="button3" class="button green" onclick="toggle_button('3')">3</div>
+<br />
+<div id="button4" class="button green" onclick="toggle_button('4')">4</div>
+<br />
+<div id="button5" class="button green" onclick="toggle_button('5')">5</div>
+<br />
+</div>
+
+</body>
+</html>

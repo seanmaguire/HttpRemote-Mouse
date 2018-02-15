@@ -1,0 +1,11 @@
+C:\Users\wolf\Desktop\now\code\httpremote\bin\Debug\HttpRemote.exe
+C:\Users\wolf\Desktop\now\code\httpremote\bin\Debug\HttpRemote.pdb
+C:\Users\wolf\Desktop\now\code\httpremote\obj\x86\Debug\HttpRemote.exe
+C:\Users\wolf\Desktop\now\code\httpremote\obj\x86\Debug\HttpRemote.pdb
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\httpremote\obj\x86\Debug\HttpRemote.exe
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\httpremote\obj\x86\Debug\HttpRemote.pdb
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\httpremote\bin\Debug\HttpRemote.exe
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\httpremote\bin\Debug\HttpRemote.pdb
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\httpremote\obj\x86\Debug\HttpRemote.csprojResolveAssemblyReference.cache
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\HttpRemote-Mouse\obj\x86\Debug\HttpRemote.exe
+C:\Users\wolf\Documents\Visual Studio 2013\Projects\HttpRemote-Mouse\obj\x86\Debug\HttpRemote.pdb
